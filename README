@@ -1,0 +1,20 @@
+This is a django project.
+
+ABOUT:
+    This app is used to fetch a single key, all key, flush memcache server and to get server statics.
+    This app uses django memcache connection to fetch single value of key and
+    flush cache. And for server statics and show all key it uses python
+    memcache.py which internally used TCP/IP to connect to memcache server.
+    One limitation of this app is memcache should run on same server on which
+    project is running. (I am working on this limitation.)
+
+Requirement:
+    There is no specific requirement.
+
+Configuration:
+    1. Put memcacheinfo is INSTALLED_APPS
+    2. put (r'^memcacheinfo/', include('memcacheinfo.urls')), in urls.py
+
+    only user having admin privileges can access memcacheinfo urls otherwise it
+    will throw 404 page.
+
