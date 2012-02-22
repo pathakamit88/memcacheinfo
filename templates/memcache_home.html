@@ -1,0 +1,65 @@
+{% extends "admin/base_site.html" %}
+{% block breadcrumbs %}<div class="breadcrumbs"><a href="{% url memcache_home %}">Memcache Home</a>{% if title %} &rsaquo; {{ title }}{% endif %}</div>{% endblock %}
+
+{% block content %}
+    <div id="content-main">
+        <h1>Welcome to Memcahe info,</h1>
+        <br/>
+
+        <div class="module">
+            <table>
+                <caption><a href="#" class="section" title="Flush All Keys">Flush All Keys</a></caption>
+                <tbody>
+                    <td>
+                        <form action="{% url memcache_flush %}" method="POST">{% csrf_token %}
+                            <input type="submit" value="Flush Memcache" name="flush_memcache" id="id_flush_memcache"/>
+                        </form>
+                    </td>
+                </tbody>
+            </table>
+        </div>
+
+        <br/>
+        <div class="module">
+            <table>
+                <caption><a href="#" class="section" title="Enter a Key to lookup">Enter a Key to lookup</a></caption>
+                <tbody>
+                    <td>
+                        <form action="{% url memcache_keyinfo %}" method="POST">{% csrf_token %}
+                            Key: <input  type="text" name='key_name'  value="" id="id_key_name"><br/><br/>
+                            <input  type="submit" name="submit" value="submit">
+                        </form>
+                    </td>
+                </tbody>
+            </table>
+        </div>
+
+        <br/>
+        <div class="module">
+            <table>
+                <caption><a href="#" class="section" title="Show All Keys">Show All Keys</a></caption>
+                <tbody>
+                    <td>
+                        <form action="{% url memcache_showkeys %}" method="POST">{% csrf_token %}
+                            <input type="submit" value="Show All Keys" name="show_keys" id="id_show_keys"/><br/><br/>
+                        </form>
+                    </td>
+                </tbody>
+            </table>
+        </div>
+
+        <br/>
+        <div class="module">
+            <table>
+                <caption><a href="#" class="section" title="Server cache Info">Server cache Info</a></caption>
+                <tbody>
+                <td>
+                    <form action="{% url memcache_server_statics %}" method="POST">{% csrf_token %}
+                        <input type="submit" value="Server cache Info" name="server_info" id="id_server_info"/><br/><br/>
+                    </form>
+                </td>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

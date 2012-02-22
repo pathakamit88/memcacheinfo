@@ -1,0 +1,33 @@
+{% extends "admin/base_site.html" %}
+{% block breadcrumbs %}<div class="breadcrumbs"><a href="{% url memcache_home %}">Memcache Home</a>{% if title %} &rsaquo; {{ title }}{% endif %}</div>{% endblock %}
+
+{% block content %}
+    <table>
+        <thead>
+            <th></th><th>Key</th><th>Size</th>
+        </thead>
+        {% for key,value in soted_key_value_dict %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ key }}</td>
+                <td>{{ value }} b</td>
+            </tr>
+        {% endfor %}
+    </table>
+    
+    <br><br>
+
+    <div class="module">
+        <table>
+            <caption><a href="#" class="section" title="Enter a Key to lookup">Enter a Key to lookup</a></caption>
+            <tbody>
+            <td>
+                <form action="{% url memcache_keyinfo %}" method="POST">{% csrf_token %}
+                    Key: <input  type="text" name='key_name'  value="" id="id_key_name"><br/><br/>
+                    <input  type="submit" name="submit" value="submit">
+                </form>
+            </td>
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

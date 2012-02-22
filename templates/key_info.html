@@ -1,0 +1,18 @@
+{% extends "admin/base_site.html" %}
+{% block breadcrumbs %}<div class="breadcrumbs"><a href="{% url memcache_home %}">Memcache Home</a>{% if title %} &rsaquo; {{ title }}{% endif %}</div>{% endblock %}
+
+{% block content %}
+    
+    <h1>Statistics</h1>
+    <b>Value in cache for key: {{ key }} </b><br><br>
+
+    {{ data }}
+    <br/><br/>
+    {% if key_in_cache %}
+        <form action="{% url memcache_delete_key %}" method="POST">{% csrf_token %}
+            <input type="hidden" name="key_name" id="id_key_name" value="{{ key }}"/>
+            <input type="submit" value="Delete key" name="delete_key" id="id_delete_key"/>
+        </form>
+    {% endif %}
+
+{% endblock content %}
